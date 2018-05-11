@@ -1,0 +1,259 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,600);
+
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+.blackHref {
+    color: black;
+}
+
+.notePara {
+    font-size: 13px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f7e476;
+    border-radius: 10px;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+}
+
+.topHead {
+    background-color:#24304E;
+    color: white;
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: -1px;
+    transition: all 0.5s linear;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.shareLink {
+    background-color:#24304E;
+    color: white;
+    padding: 15px 0px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: -1px;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.inSerDiv {
+    display: flex;
+    width: max-content;
+    margin: auto;
+}
+
+.shastraCover {
+    max-width: 650px;
+    margin: 100px auto;
+}
+
+.para {
+    font-family: 'Hind', sans-serif;
+    padding: 6px 4px;
+    line-height: 30px;
+    letter-spacing: 0.5px;
+}
+
+.paraBlue {
+    background-color: #90CAF9;
+    cursor: pointer;
+    padding: 0 6px;
+}
+
+.paraYello {
+    background-color: #FFEE58;
+}
+
+.paralight:hover {
+    background-color: #64B5F6;
+}
+
+.paraHead {
+    margin-top: 20px;
+    font-size: 24px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.searIcon {
+    padding: 10px 0px;
+    max-width: 800px;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.SIDiv {
+    width: max-content;
+    margin: auto;
+    margin-right: 20px;
+}
+
+.SIImage {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+.modalCover {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+.modalCover::-webkit-scrollbar {display:none;}
+
+.modalBox {
+    background-color: #fefefe;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 2px;
+    width: 450px;
+}
+
+.modalTop {
+    font-size: 24px;
+    background-color: #1F497D;
+    color: white;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 20px;
+    text-align:center;
+}
+
+.modalText {
+    font-size: 16px;
+    color: black;
+    text-align:center;
+    margin: 40px auto;
+}
+
+
+#modalCross {
+    margin: auto;
+    margin-right: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.modalPadding {
+    padding: 15px;
+    padding-bottom: 30px;
+    padding-top: 0;    
+}
+
+.modalBtn {
+    margin: auto;
+    margin-top: 12px;
+    width: 200px;
+    text-align: center;
+    background-color: #1F497D;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 12px 20px;
+    cursor: pointer;
+    -webkit-transition: all 500ms linear;
+    -ms-transition: all 500ms linear;
+    transition: all 500ms linear;
+}
+
+.inputElem {
+    width: 250px;
+    color: white;
+    background-color: #1F497D;
+    text-align: center;
+    border: 1px solid #0091EA;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.imgIcon {
+    width: 38px;
+    height: 38px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #1F497D;
+}
+
+.imgIcon:hover {
+    background-color: #3968a3;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+}
+
+@media screen and (max-width: 400px) {
+
+    .para {
+        padding: 4px;
+        font-size: 16px;
+        word-spacing: 3px;
+    }
+
+    .paraHead {
+        font-size: 20px;
+    }
+
+    .modalTop {
+        font-size: 20px;
+    }
+    
+    .modalBox {
+        margin: 10px auto;
+        width: 95%;
+    }
+
+    .notePara {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+
+}

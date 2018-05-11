@@ -1,0 +1,34 @@
+{
+  "name": "jintech",
+  "version": "1.0.0",
+  "description": "Technological Enhancement in Swadhyay",
+  "main": "app.js",
+  "scripts": {
+    "err": "cd /root/.pm2/logs/ && echo '' > app-error-0.log"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sowmayjain/mmp.git"
+  },
+  "author": "Sowmay Jain (hey@sowmayjain.com) @sowmay_jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sowmayjain/mmp/issues"
+  },
+  "homepage": "https://github.com/Sowmayjain/mmp#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "firebase-admin": "^5.8.0",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "jsdom": "^11.9.0",
+    "node-cron": "^1.2.1",
+    "npm": "^5.8.0",
+    "nunjucks": "^3.0.1",
+    "path": "^0.12.7"
+  }
+}
