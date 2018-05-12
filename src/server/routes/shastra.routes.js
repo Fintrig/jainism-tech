@@ -2,7 +2,7 @@ const express = require('express'),
     fs = require('fs'),
     router = express.Router();
 
-const ShastraJSON = 'src/server/data/json/shastra';
+const ShastraJSON = 'src/server/data/shastra';
 
 var db;
 router.use((req, res, next) => {

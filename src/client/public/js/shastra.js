@@ -115,7 +115,7 @@ function ShareLink() {
                 }
             });
         } else {
-            alert("Your selected text must be between 20 to 1500 characters. Multi paragraph selection also doesn't work.");
+            alert("Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.");
         }
     }
 }
