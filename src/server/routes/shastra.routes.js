@@ -2,7 +2,7 @@ const express = require('express'),
     fs = require('fs'),
     router = express.Router();
 
-const ShastraJSON = 'src/server/data/shastra';
+const ShastraPath = 'src/server/data/shastra';
 
 var db;
 router.use((req, res, next) => {
@@ -19,27 +19,24 @@ router.get('/:shastraID/:pageID', (req, res) => {
     var shastraID = req.params.shastraID;
     var pageID = req.params.pageID;
     var shareID = req.query.id;
-
-    fs.readFile(`${ShastraJSON}/${shastraID}/${pageID}.json`, 'utf8', (err, sData) => {
+    fs.readFile(`${ShastraPath}/${shastraID}/${pageID}.json`, 'utf8', (err, shastraData) => {
 		if (err) {
             res.send('Looks Like URL is Broken. No Shastra with such Details.');
         } else {
-            var sData = JSON.parse(sData);
-            if (sData) {
+            var shastraJSON = JSON.parse(shastraData);
+            if (shastraJSON) {
                 var obj = {};
                 obj.shastraID = shastraID;
                 obj.pageID = pageID;
-                obj.sData = sData;
+                obj.shastraJSON = shastraJSON;
                 if (shareID) {
                     db.ref(`TextShare/${shareID}`).once("value", (data) => {
                         var data = data.val();
                         if (data) {
                             obj.yellowedText = data.text;
                             obj.shareID = shareID;
-                            res.render('shastra.njk', obj);
-                        } else {
-                            res.render('shastra.njk', obj);
                         }
+                        res.render('shastra.njk', obj);
                     });
                 } else {
                     res.render('shastra.njk', obj);

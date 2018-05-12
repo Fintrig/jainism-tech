@@ -15,13 +15,13 @@ const network = require('./src/server/modules/network'),
 const routes = require('./src/server/routes/routes'),
 	shastraRoutes = require('./src/server/routes/shastra.routes');
 
-
-if(!process.env.FIREBASE_KEYS) {
-    console.error("$FIREBASE_KEYS environment variable not set");
-    process.exit();
+if (!process.env.FIREBASE_KEYS) {
+	// console.error("$FIREBASE_KEYS environment variable not set");
+	process.env.FIREBASE_KEYS = './firebase.json';
+	process.env.dev = true;
 }
 
-if(!process.env.PORT) {
+if (!process.env.PORT) {
     console.error("$PORT is not specified! Starting a server at 5000");
     process.env.PORT = 5000;
 }
@@ -65,15 +65,14 @@ app.use(express.static(path.join(__dirname, 'src/client/public'), {
 	maxAge: '750h'
 }));
 
-app.use('/:id', express.static(path.join(__dirname, 'src/client/public'), {
-	maxAge: '750h',
-	redirect: false // to remove slash '/' from the last of url
-}));
-
-app.use('/:id/:num', express.static(path.join(__dirname, 'src/client/public'), {
-	maxAge: '750h',
-	redirect: false // to remove slash '/' from the last of url
-}));
+var routePath = '';
+for (var i = 0; i < 7; i++) {
+	routePath += `/:id${i}`;
+    app.use(routePath, express.static(path.join(__dirname, 'src/client/public'), {
+		maxAge: '750h',
+		redirect: false // to remove slash '/' from the last of url
+	}));
+}
 
 app.use('/s', shastraRoutes);
 app.use('/', routes);

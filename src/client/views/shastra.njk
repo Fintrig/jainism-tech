@@ -1,73 +1,43 @@
+{% extends "templates/index.njk" %}
+{% block content %}
+    
+    <link href="css/shastra.css" rel="stylesheet">
 
-<!DOCTYPE html>
-<html class="" lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="generator" content="Pagekit">
-        <link rel="canonical" href="https://jainism.tech">
+    <div class="topHead">Moksh Marg Prakashak</div>
+    <div class="shastraCover">
+        <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, shoot an email to <a href="mailto:hey@sowmayjain.com" class="blackHref">hey@sowmayjain.com</a></div>
+        {% for x in shastraJSON %}
+            <{{x.element}} class="{{x.class}}">{{x.text}}</{{x.element}}>
+        {% endfor %}
+    </div>
 
-        <!-- browser color change -->
-        <meta name="theme-color" content="#24304E">
-        <meta name="msapplication-navbutton-color" content="#24304E">
-        <meta name="apple-mobile-web-app-status-bar-style" content="#24304E">
-
-        <link href="css/shastra.css" rel="stylesheet">  
-
-        <meta property="twitter:card" content="img/logo.png">
-        <meta property="og:site_name" content="Jainism Tech - Technological Enhancement in Swadhyay">
-        <meta property="og:title" content="Jainism Tech - Technological Enhancement in Swadhyay">
-        <meta property="og:url" content="https://jainism.tech">
-        <meta name="msapplication-TileImage" content="img/logo.png" />
-        <link href="img/logo.png" rel="shortcut icon" type="image/x-icon">
-        <link href="img/logo.png" rel="apple-touch-icon-precomposed">
-        <title>Jainism Tech - Technological Enhancement in Swadhyay</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-72808093-8"></script>
-    </head>
-    <body>
-
-        <div class="topHead">Moksh Marg Prakashak</div>
-
-        <div class="shastraCover">
-            <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, shoot an email to <a href="mailto:hey@sowmayjain.com" class="blackHref">hey@sowmayjain.com</a></div>
-            {% for x in sData %}
-                <{{x.element}} class="{{x.class}}">{{x.text}}</{{x.element}}>
-            {% endfor %}
+    <div class="searIcon">
+        <div class="SIDiv">
+            <img src="img/share.png" alt="Search" class="SIImage" onclick="ShareLink()" hidden>
         </div>
+    </div>
 
-        <div class="searIcon">
-            <div class="SIDiv">
-                <img src="img/share.png" alt="Search" class="SIImage" onclick="ShareLink()" hidden>
+    <div class="shareLink" hidden>
+        <div class="inSerDiv">
+            <input type="text" class="inputElem" id="linkToShare" onclick="this.focus();this.select()">
+            <img src="img/close.png" alt="Search" class="imgIcon" id="closeShareLink" onclick="CloseShareLink()">
+        </div>
+    </div>
+
+    <!-- <div class="modalCover">
+        <div class="modalBox">
+            <div class="modalTop"></div>
+            <div class="modalPadding">
+                <div class="modalText para">मन के सद्भाव के कारण जिन जीवों में शिक्षा ग्रहण करने व विशेष प्रकार से विचार, तर्क आदि करने की शक्ति है वे संज्ञी कहलाते हैं। यद्यपि चींटी आदि क्षुद्र जन्तुओं में भी इष्ट पदार्थ की प्राप्ति के प्रति गमन और अनिष्ट पदार्थों से हटने की बुद्धि देखी जाती है पर उपरोक्त लक्षण के अभाव में वे संज्ञी नहीं कहे जा सकते।</div>
+                <div class="modalBtn" onclick="$('.modalCover').hide()">DISMISS</div>                    
             </div>
         </div>
+    </div> -->
 
-        <div class="shareLink" hidden>
-            <div class="inSerDiv">
-                <input type="text" class="inputElem" id="linkToShare" onclick="this.focus();this.select()">
-                <img src="img/close.png" alt="Search" class="imgIcon" id="closeShareLink" onclick="CloseShareLink()">
-            </div>
-        </div>
+    <span class="SharedText" id="{{shareID}}" hidden>{{yellowedText}}</span>
+    <span class="shastraID" hidden>{{shastraID}}</span>
+    <span class="pageID" hidden>{{pageID}}</span>
 
-        <div class="modalCover">
-            <div class="modalBox">
-                <div class="modalTop"></div>
-                <div class="modalPadding">
-                    <div class="modalText para">मन के सद्भाव के कारण जिन जीवों में शिक्षा ग्रहण करने व विशेष प्रकार से विचार, तर्क आदि करने की शक्ति है वे संज्ञी कहलाते हैं। यद्यपि चींटी आदि क्षुद्र जन्तुओं में भी इष्ट पदार्थ की प्राप्ति के प्रति गमन और अनिष्ट पदार्थों से हटने की बुद्धि देखी जाती है पर उपरोक्त लक्षण के अभाव में वे संज्ञी नहीं कहे जा सकते।</div>
-                    <div class="modalBtn" onclick="$('.modalCover').hide()">DISMISS</div>                    
-                </div>
-            </div>
-        </div>
+    <script src="js/shastra.js"></script>
 
-        <span class="SharedText" id="{{shareID}}" hidden>{{yellowedText}}</span>
-        <span class="shastraID">{{shastraID}}</span>
-        <span class="pageID">{{pageID}}</span>
-
-        <script src="js/index.js"></script>        
-        <script src="js/shastra.js"></script>
-        
-    </body>
-</html>
+{% endblock %}

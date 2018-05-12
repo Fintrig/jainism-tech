@@ -1,6 +1,3 @@
-// use toolkit to show share button on hovering text
-// https://www.w3schools.com/css/css_tooltip.asp
-
 // increase and decrease the padding of top bar
 var activateAtY = 20;
 $(window).scroll(function() {
