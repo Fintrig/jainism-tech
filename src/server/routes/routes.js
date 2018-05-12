@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('*', (req, res) => {
-    res.redirect('/');
+    res.send('404 URL Not Found');
 });
 
 module.exports = router;

@@ -13,7 +13,8 @@ const network = require('./src/server/modules/network'),
 	scheduler = require('./src/server/modules/scheduler');
 
 const routes = require('./src/server/routes/routes'),
-	shastraRoutes = require('./src/server/routes/shastra.routes');
+	shastraRoutes = require('./src/server/routes/shastra.routes'),
+	formatRoutes = require('./src/server/routes/format.routes');
 
 if (!process.env.FIREBASE_KEYS) {
 	// console.error("$FIREBASE_KEYS environment variable not set");
@@ -75,6 +76,7 @@ for (var i = 0; i < 7; i++) {
 }
 
 app.use('/s', shastraRoutes);
+app.use('/format', formatRoutes);
 app.use('/', routes);
 
 nunjucks.configure('./src/client/views', {
