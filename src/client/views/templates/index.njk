@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
         <meta name="generator" content="Pagekit">
         <link rel="canonical" href="https://jainism.tech">
 
@@ -31,6 +33,20 @@
             gtag('js', new Date());
             gtag('config', 'UA-72808093-13');
         </script>
+        
+        <script>
+		/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+		var prevScrollpos = window.pageYOffset;
+		window.onscroll = function() {
+		  var currentScrollPos = window.pageYOffset;
+		  if (prevScrollpos > currentScrollPos) {
+			document.getElementById("topHead").style.top = "0";
+		  } else {
+			document.getElementById("topHead").style.top = "-50px";
+		  }
+		  prevScrollpos = currentScrollPos;
+		}
+		</script>
 
     </head>
     <body>
