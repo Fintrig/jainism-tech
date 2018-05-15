@@ -1,8 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,600);
 
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 16px;
+$max_font: 24px;
+
 html, body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
 }
 
 .blackHref {
@@ -10,7 +16,7 @@ html, body {
 }
 
 .notePara {
-    font-size: 13px;
+    font-size: 14px;
     padding: 10px;
     text-align: center;
     background-color: #f7e476;
@@ -68,7 +74,8 @@ html, body {
 .para {
     font-family: 'Hind', sans-serif;
     padding: 6px 4px;
-    line-height: 30px;
+    /*line-height: 30px;*/
+    line-height: 1.8;
     letter-spacing: 0.5px;
 }
 
@@ -88,7 +95,7 @@ html, body {
 
 .paraHead {
     margin-top: 20px;
-    font-size: 24px;
+    /*font-size: 24px;*/
     letter-spacing: -1px;
     font-weight: bold;
 }
@@ -231,7 +238,7 @@ html, body {
 
 @media screen and (max-width: 400px) {
 
-    .para {
+   /* .para {
         padding: 4px;
         font-size: 16px;
         word-spacing: 3px;
@@ -239,7 +246,7 @@ html, body {
 
     .paraHead {
         font-size: 20px;
-    }
+    }*/
 
     .modalTop {
         font-size: 20px;
