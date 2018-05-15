@@ -9,7 +9,7 @@ function PostData() {
             text: text
         }, function(data) {
             $('textarea').val(data);
-            $('.floatBtn').text('Write Text').attr('onclick', "window.location.href='/format'");
+            $('.floatBtn').text('Refresh').attr('onclick', "window.location.href='/format'");
             textAreaAdjust();
         });
     }

@@ -35,8 +35,7 @@ router.post('/convert', (req, res) => {
 			var el = dom.window.document.querySelector("div");
 			var obj = {};
 			var clsList = el.classList.value;
-			// obj.element = el.tagName.toLowerCase();
-			obj.class = clsList;
+			obj.class = 'para';
 			obj.text = el.textContent;
 			ExtractJSON.push(obj);
 		}

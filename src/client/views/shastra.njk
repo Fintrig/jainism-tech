@@ -7,7 +7,7 @@
     <div class="shastraCover">
         <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, shoot an email to <a href="mailto:hey@sowmayjain.com" class="blackHref">hey@sowmayjain.com</a></div>
         {% for x in shastraJSON %}
-            <{{x.element}} class="{{x.class}}">{{x.text}}</{{x.element}}>
+            <div class="{{x.class}}">{{x.text}}</div>
         {% endfor %}
     </div>
 
