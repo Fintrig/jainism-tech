@@ -1,14 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,600);
 
-$min_width: 320px;
+/* commented because it was creating error in the CSS file */
+/* $min_width: 320px;
 $max_width: 1200px;
 $min_font: 16px;
-$max_font: 24px;
+$max_font: 24px; */
 
 html, body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    @include fluid-type($min_width, $max_width, $min_font, $max_font);
+    /* @include fluid-type($min_width, $max_width, $min_font, $max_font); */
 }
 
 .blackHref {
@@ -74,7 +75,6 @@ html, body {
 .para {
     font-family: 'Hind', sans-serif;
     padding: 6px 4px;
-    /*line-height: 30px;*/
     line-height: 1.8;
     letter-spacing: 0.5px;
 }
@@ -94,8 +94,8 @@ html, body {
 }
 
 .paraHead {
-    margin-top: 20px;
-    /*font-size: 24px;*/
+    margin-top: 30px;
+    font-size: 20px;
     letter-spacing: -1px;
     font-weight: bold;
 }
@@ -237,16 +237,6 @@ html, body {
 }
 
 @media screen and (max-width: 400px) {
-
-   /* .para {
-        padding: 4px;
-        font-size: 16px;
-        word-spacing: 3px;
-    }
-
-    .paraHead {
-        font-size: 20px;
-    }*/
 
     .modalTop {
         font-size: 20px;

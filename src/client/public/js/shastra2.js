@@ -1,3 +1,15 @@
+/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        $('.topHead').css('top', '0');
+    } else {
+        $('.topHead').css('top', '-50px');
+    }
+    prevScrollpos = currentScrollPos;
+}
+
 // increase and decrease the padding of top bar
 var activateAtY = 20;
 $(window).scroll(function() {
@@ -10,19 +22,11 @@ $(window).scroll(function() {
     }
 });
 
-// popup on definition element click
-function define(thisElem) {
-    var text = $(thisElem).text();
-    $('.modalTop').text(text);
-    $('.modalCover').show();
-}
-
 /*
     get highlight query parameter from URL
     search for text and highlight it yellow
     scroll to that space element on the page
 */
-
 var TextToBeYellowed = $('.SharedText').text();
 if (TextToBeYellowed) {
     var sid = $('.SharedText').attr('id');
@@ -128,3 +132,10 @@ function CloseShareLink() {
 // $("body").children().each(function () {
 //     $(this).html( $(this).html().replace(/स्वरूप/g,"<span class='paraBlue' onclick='define(this)'>स्वरूप</span>") );
 // });
+
+// popup on definition element click
+function define(thisElem) {
+    var text = $(thisElem).text();
+    $('.modalTop').text(text);
+    $('.modalCover').show();
+}
