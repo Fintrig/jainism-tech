@@ -30,20 +30,6 @@
     right: 0;
 }
 
-.proofError {
-    padding: 10px;
-    color: white;
-    background-color: #FF1200;
-    text-align: center;
-    font-weight: bold;
-    transition: all 0.5s linear;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
 .shastraCover {
     max-width: 900px;
     margin: 100px auto;
@@ -214,10 +200,6 @@
 
     .topHead {
         font-size: 18px;
-    }
-
-    .proofError {
-        font-size: 14px;
     }
 
 }

@@ -118,6 +118,15 @@ function shareLink() {
     }
 }
 
+// share link on android chrome +61 version
+function navShare() {
+    if (navigator.share != undefined) {
+        var text = $('.topHead').text();
+        var url = $('.linkText').text();
+        navigator.share({text, url});
+    }
+}
+
 // copy selected text
 function copyText() {
     if (TextHighlighted) {
@@ -170,5 +179,5 @@ function copyLinkToClip() {
 // show proofread error if now proofread
 var proofbool = $('.proofread').text();
 if (proofbool == "false") {
-    $('.proofError').show();
+    popAlert(`WARNING`, `This page has not been proofread. Read at your own risk.`);
 }
