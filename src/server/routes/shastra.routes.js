@@ -15,13 +15,15 @@ router.use((req, res, next) => {
     render the JSON file
 */
 
+var LinkBrokeError = `Looks Like URL is Broken. No Shastra with such Details. Please us at our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.`;
+
 router.get('/:shastraID/:pageID', (req, res) => {
     var shastraID = req.params.shastraID;
     var pageID = req.params.pageID;
     var shareID = req.query.id;
     fs.readFile(`${ShastraPath}/${shastraID}/${pageID}.json`, 'utf8', (err, shastraData) => {
 		if (err) {
-            res.send('Looks Like URL is Broken. No Shastra with such Details.');
+            res.send(LinkBrokeError);
         } else {
             var shastraJSON = JSON.parse(shastraData);
             if (shastraJSON) {
@@ -29,20 +31,25 @@ router.get('/:shastraID/:pageID', (req, res) => {
                 obj.shastraID = shastraID;
                 obj.pageID = pageID;
                 obj.shastraJSON = shastraJSON;
-                if (shareID) {
-                    db.ref(`TextShare/${shareID}`).once("value", (data) => {
-                        var data = data.val();
-                        if (data) {
-                            obj.yellowedText = data.text;
-                            obj.shareID = shareID;
-                        }
+                db.ref(`Shastra/${shastraID}`).once("value", (metaData) => {
+                    var metaData = metaData.val();
+                    obj.pageData = metaData.pages[pageID];
+                    obj.metaData = metaData;
+                    if (shareID) {
+                        db.ref(`TextShare/${shareID}`).once("value", (data) => {
+                            var data = data.val();
+                            if (data) {
+                                obj.yellowedText = data.text;
+                                obj.shareID = shareID;
+                            }
+                            res.render('shastra.njk', obj);
+                        });
+                    } else {
                         res.render('shastra.njk', obj);
-                    });
-                } else {
-                    res.render('shastra.njk', obj);
-                }
+                    }
+                });
             } else {
-                res.send('Looks Like URL is Broken. No Shastra with such Details.');
+                res.send(LinkBrokeError);
             }
         }
     });
@@ -72,7 +79,7 @@ router.post('/text', (req, res) => {
     } else {
         res.send({
             status: false,
-            message: "Your selected text must be between 20 to 1500 characters. Multi paragraph selection also doesn't work.",
+            message: "Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.",
             data: {
                 uniID: uniID
             }

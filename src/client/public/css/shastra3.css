@@ -1,15 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,600);
 
-/* commented because it was creating error in the CSS file */
-/* $min_width: 320px;
-$max_width: 1200px;
-$min_font: 16px;
-$max_font: 24px; */
-
 html, body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    /* @include fluid-type($min_width, $max_width, $min_font, $max_font); */
+    background-color: #EDEDED;
 }
 
 .blackHref {
@@ -72,6 +66,15 @@ html, body {
     margin: 100px auto;
 }
 
+.pageTitle {
+    font-size: 30px;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 .para {
     font-family: 'Hind', sans-serif;
     padding: 6px 4px;
@@ -98,6 +101,8 @@ html, body {
     font-size: 20px;
     letter-spacing: -1px;
     font-weight: bold;
+    background-color: white;
+    padding: 5px 10px;
 }
 
 .center {

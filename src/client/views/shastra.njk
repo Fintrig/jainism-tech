@@ -1,14 +1,16 @@
 {% extends "templates/index.njk" %}
 {% block content %}
     
-    <link href="css/shastra2.css" rel="stylesheet">
+    <link href="css/shastra3.css" rel="stylesheet">
 
-    <div class="topHead">Moksh Marg Prakashak</div>
+    <div class="topHead">{{metaData.name}} ({{metaData.author}})</div>
     <div class="shastraCover">
-        <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, shoot an email to <a href="mailto:hey@sowmayjain.com" class="blackHref">hey@sowmayjain.com</a></div>
+        <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, join our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.</div>
+        <div class="pageTitle">{{pageData.title}}</div>
         {% for x in shastraJSON %}
             <div class="{{x.class}}">{{x.text}}</div>
         {% endfor %}
+        <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, join our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.</div>
     </div>
 
     <div class="searIcon">
@@ -37,6 +39,7 @@
     <span class="SharedText" id="{{shareID}}" hidden>{{yellowedText}}</span>
     <span class="shastraID" hidden>{{shastraID}}</span>
     <span class="pageID" hidden>{{pageID}}</span>
+    <span class="proofread" hidden>{{pageData.proofread}}</span>
 
     <script src="js/shastra2.js"></script>
 
