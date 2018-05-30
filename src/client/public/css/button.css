@@ -1,0 +1,26 @@
+.linkedBtn {
+    width: max-content;
+    margin: auto;
+    padding: 40px;
+}
+
+.normalBtn {
+    text-align: center;
+    margin: 30px auto;
+    width: max-content;
+    font-weight: bold;
+    background-color: #33555E;
+    color: white;
+    padding: 10px 40px;
+    border-radius: 20px;
+    font-size: 20px;
+    -webkit-box-shadow: 0 10px 8px -8px #33555E;
+    -moz-box-shadow: 0 10px 8px -8px #33555E;
+    box-shadow: 0 10px 8px -8px #33555E;
+}
+
+.normalBtn:hover {
+    -webkit-box-shadow: 0 14px 10px -10px #33555E;
+    -moz-box-shadow: 0 14px 10px -10px #33555E;
+    box-shadow: 0 14px 10px -10px #33555E;
+}

@@ -7,37 +7,36 @@
 
     <div class="topHead">{{metaData.name}} - {{pageData.title}}</div>
     <div class="shastraCover">
-        <div class="para center">रचियता - {{metaData.author}}</div>
-        <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, join our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.</div>
+        <div class="authorClass center">रचियता - {{metaData.author}}</div>
         <div class="pageTitle">{{pageData.title}}</div>
         {% for x in shastraJSON %}
             <div class="{{x.class}}">{{x.text}}</div>
         {% endfor %}
-        <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, join our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.</div>
+        <!-- <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, join our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.</div> -->
     </div>
 
-    <div class="searIcon">
-        <div class="SIDiv">
-            <img src="img/share.png" alt="Search" class="SIImage" onclick="ShareLink()" hidden>
+    <div class="linkedBtn">
+        <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank" class="normalBtn noline">Telegram</a>
+    </div>
+
+    <div class="iconSect" hidden>
+        <div class="iconDiv">
+            <i class="material-icons md-28 onSelIcon" onclick="shareLink()">share</i>
+            <div class="partDesign"></div>
+            <i class="material-icons md-28 onSelIcon" onclick="copyText()">file_copy</i>
         </div>
     </div>
 
-    <div class="shareLink" hidden>
-        <div class="inSerDiv">
-            <input type="text" class="inputElem" id="linkToShare" onclick="this.focus();this.select()">
-            <img src="img/close.png" alt="Search" class="imgIcon" id="closeShareLink" onclick="CloseShareLink()">
-        </div>
-    </div>
-
-    <!-- <div class="modalCover">
+    <!-- modal box popup -->
+    <div class="copyModel">
         <div class="modalBox">
-            <div class="modalTop"></div>
+            <div class="modalTop">Unique Link Created</div>
             <div class="modalPadding">
-                <div class="modalText para">मन के सद्भाव के कारण जिन जीवों में शिक्षा ग्रहण करने व विशेष प्रकार से विचार, तर्क आदि करने की शक्ति है वे संज्ञी कहलाते हैं। यद्यपि चींटी आदि क्षुद्र जन्तुओं में भी इष्ट पदार्थ की प्राप्ति के प्रति गमन और अनिष्ट पदार्थों से हटने की बुद्धि देखी जाती है पर उपरोक्त लक्षण के अभाव में वे संज्ञी नहीं कहे जा सकते।</div>
-                <div class="modalBtn" onclick="$('.modalCover').hide()">DISMISS</div>                    
+                <div class="modalText linkText"></div>
+                <div class="modalBtn" onclick="copyToClip()">COPY LINK</div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <span class="SharedText" id="{{shareID}}" hidden>{{yellowedText}}</span>
     <span class="shastraID" hidden>{{shastraID}}</span>

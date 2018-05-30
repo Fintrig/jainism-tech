@@ -10,16 +10,6 @@ window.onscroll = function() {
     prevScrollpos = currentScrollPos;
 }
 
-// increase and decrease the padding of top bar
-var activateAtY = 20;
-$(window).scroll(function() {
-    if ($(window).scrollTop() > activateAtY) {
-        $('.topHead').css('background-color','rgba(36, 48, 78, 0.9)');
-    } else {
-        $('.topHead').css('background-color','rgba(36, 48, 78, 1)');
-    }
-});
-
 /*
     get highlight query parameter from URL
     search for text and highlight it yellow
@@ -60,36 +50,41 @@ function yellowScroll(sid) {
     });
 }
 
-/*
-    do something with selected text
-*/
-
+// do something with selected text
+var TextHighlighted;
 function getSelectionText() {
-    var text = "";
     if (window.getSelection) {
-        text = window.getSelection().toString();
+        var text = window.getSelection().toString();
     } else if (document.selection && document.selection.type != "Control") {
-        text = document.selection.createRange().text;
+        var text = document.selection.createRange().text;
     }
-    return text;
+    if (text) {
+        return text;
+    } else {
+        return TextHighlighted;
+    }
 }
 
-var TextHighlighted;
+// show bottom icon if selected text
 document.onmouseup = document.onkeyup = document.onselectionchange = function() {
     TextHighlighted = getSelectionText();
     if (TextHighlighted) {
-        $('.SIImage').show('slow');
-    } else {
-        $('.SIImage').hide();
-        TextHighlighted = "";
+        $('.iconSect').show();
     }
 };
 
-/*
-    show link on clicking the share button
-*/
+// hide the bottom icons if not clicked and if no selected text
+window.onclick = function(e) {
+    var classList = e.srcElement.className.split(/\s+/);
+    for (i = 0; i < classList.length; i++) {
+        if (!classList.includes('onSelIcon') && !TextHighlighted) {
+            $('.iconSect').hide();
+        }
+    }
+}
 
-function ShareLink() {
+// show link on clicking the share button
+function shareLink() {
     if (TextHighlighted) {
         var shastraID = $('.shastraID').text();
         var pageID = $('.pageID').text();
@@ -99,29 +94,66 @@ function ShareLink() {
             pageID: pageID
         }
         if (TextHighlighted.length > 20 && TextHighlighted.length < 1200) {
+            loader(true);
             $.post("/s/text", obj, function(res, status) {
-                console.log(status);
                 if (status) {
                     if (res.status) {
-                        $('#linkToShare').val(`${document.location.origin}/s/${shastraID}/${pageID}?id=${res.data.uniID}`);
-                        $('.SIImage').hide();
-                        $('.shareLink').show('slow');
+                        var fullURL = `${document.location.origin}/s/${shastraID}/${pageID}?id=${res.data.uniID}`;
+                        console.log(fullURL);
+                        $('.linkText').html(`<p><a href="${fullURL}">${fullURL}</a></p>`);
+                        $('.copyModel').show();
                     } else {
-                        alert(res.message);
+                        popAlert('ERROR', res.message);
                     }
                 } else {
-                    alert('Something went wrong. Please email to hey@sowmayjain.com');
+                    popAlert('ERROR', 'Something went wrong. Please email to hey@sowmayjain.com');
                 }
+                loader(false);
             });
         } else {
-            alert("Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.");
+            popAlert('ERROR', "Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.");
         }
+    }    
+}
+
+// copy selected text
+function copyText() {
+    if (TextHighlighted) {
+        var inputElem = $('<input>').val(TextHighlighted);
+        $('body').append(inputElem);
+        inputElem.select();
+        try {
+            var ok = document.execCommand('copy');
+            if (ok) {
+                popAlert('Text Copied!', 'The selected text on the page has been copied to your clipboard.');
+            } else {
+                popAlert('Unable to copy the text', 'Due to some error, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
+            }
+        } catch (err) {
+            popAlert('Unsupported Browser', 'Due to browser compatibility issue, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
+        }
+        inputElem.remove();
     }
 }
 
-function CloseShareLink() {
-    $('.shareLink').hide();
-    $('#linkToShare').val(``);
+// copy link from modal
+function copyToClip() {
+    var fullURL = $('.linkText').text();
+    var inputElem = $('<input>').val(fullURL);
+    $('body').append(inputElem);
+    inputElem.select();
+    try {
+        var ok = document.execCommand('copy');
+        if (ok) {
+            popAlert(`URL Copied!`, `The selected text specific unique link has been copied to your clipboard.`);
+        } else {
+            popAlert(`Unable to copy the URL`, `Due to some error, we are not able to copy the text on your clipboard. Please copy the following link or click to redirect:<p><a href="${fullURL}">${fullURL}</a></p>`);
+        }
+    } catch (err) {
+        popAlert(`Unsupported Browser`, `Due to browser compatibility issue, we are not able to copy the text on your clipboard. Please copy the following link or click to redirect:<p><a href="${fullURL}">${fullURL}</a></p>`);
+    }
+    inputElem.remove();
+    $('.copyModel').hide();
 }
 
 /*
@@ -131,15 +163,8 @@ function CloseShareLink() {
 //     $(this).html( $(this).html().replace(/स्वरूप/g,"<span class='paraBlue' onclick='define(this)'>स्वरूप</span>") );
 // });
 
-// popup on definition element click
-function define(thisElem) {
-    var text = $(thisElem).text();
-    $('.modalTop').text(text);
-    $('.modalCover').show();
-}
-
 // show proofread error if now proofread
 var proofbool = $('.proofread').text();
 if (proofbool == "false") {
     $('.proofError').show();
-} 
+}

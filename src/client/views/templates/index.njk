@@ -26,6 +26,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
 
+        <link href="css/index.css" rel="stylesheet">        
+        <link href="css/button.css" rel="stylesheet">
+        <link href="css/loader.css" rel="stylesheet">
+        <link href="css/modal.css" rel="stylesheet">
+
+        <script src="js/index.js"></script>        
+
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-72808093-13"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -36,6 +43,26 @@
 
     </head>
     <body>
+
+        <!-- three dot loader -->
+        <div class="loader">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+
+        <!-- modal box popup -->
+        <div class="modalCover">
+            <div class="modalBox">
+                <div class="modalTop"></div>
+                <div class="modalPadding">
+                    <div class="modalText"></div>
+                    <div class="modalBtn" onclick="$('.modalCover').hide()">DISMISS</div>
+                </div>
+            </div>
+        </div>
 
         {% block content %}{% endblock %}
         
