@@ -128,26 +128,26 @@ function navShare() {
 }
 
 // copy selected text
-function copyText() {
-    if (TextHighlighted) {
-        var inputElem = $('<input>').val(TextHighlighted);
-        $('body').append(inputElem);
-        inputElem.select();
-        try {
-            var ok = document.execCommand('copy');
-            if (ok) {
-                popAlert('Text Copied!', 'The selected text on the page has been copied to your clipboard.');
-            } else {
-                popAlert('Unable to copy the text', 'Due to some error, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
-            }
-        } catch (err) {
-            popAlert('Unsupported Browser', 'Due to browser compatibility issue, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
-        }
-        inputElem.remove();
-    } else {
-        popAlert('Function Error', "You can't run share or copy functions without selecting or highlighting text on this page.");        
-    }
-}
+// function copyText() {
+//     if (TextHighlighted) {
+//         var inputElem = $('<input>').val(TextHighlighted);
+//         $('body').append(inputElem);
+//         inputElem.select();
+//         try {
+//             var ok = document.execCommand('copy');
+//             if (ok) {
+//                 popAlert('Text Copied!', 'The selected text on the page has been copied to your clipboard.');
+//             } else {
+//                 popAlert('Unable to copy the text', 'Due to some error, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
+//             }
+//         } catch (err) {
+//             popAlert('Unsupported Browser', 'Due to browser compatibility issue, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
+//         }
+//         inputElem.remove();
+//     } else {
+//         popAlert('Function Error', "You can't run share or copy functions without selecting or highlighting text on this page.");        
+//     }
+// }
 
 // copy link from modal
 function copyLinkToClip() {
