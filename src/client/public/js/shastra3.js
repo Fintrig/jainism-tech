@@ -116,7 +116,7 @@ function shareLink() {
             popAlert('ERROR', "Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.");
         }
     }  else {
-        popAlert('Function Error', "You can't run share or copy functions without selecting or highlighting text on this page.");        
+        popAlert('Function Error', "You can't run share function without selecting or highlighting text on this page.");        
     }
 }
 
