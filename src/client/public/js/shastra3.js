@@ -52,15 +52,24 @@ function yellowScroll(sid) {
 
 // do something with selected text
 var TextHighlighted;
+// it's to check if there's no text return (TextHighlighted is returned)
+// so to not run copy and share function even if the text is not highlighted for more than 3 seconds
+var textHighBool = true;
 function getSelectionText() {
+    var text = "";
     if (window.getSelection) {
         var text = window.getSelection().toString();
     } else if (document.selection && document.selection.type != "Control") {
         var text = document.selection.createRange().text;
     }
     if (text) {
+        textHighBool = true;
         return text;
     } else {
+        if (textHighBool) {
+            setTimeout(function(){TextHighlighted="";}, 3000);
+        }
+        textHighBool = false;
         return TextHighlighted;
     }
 }
@@ -72,16 +81,6 @@ document.onmouseup = document.onkeyup = document.onselectionchange = function() 
         $('.iconSect').show();
     }
 };
-
-// hide the bottom icons if not clicked and if no selected text
-window.onclick = function(e) {
-    var classList = e.srcElement.className.split(/\s+/);
-    for (i = 0; i < classList.length; i++) {
-        if (!classList.includes('onSelIcon') && !TextHighlighted) {
-            $('.iconSect').hide();
-        }
-    }
-}
 
 // show link on clicking the share button
 function shareLink() {
