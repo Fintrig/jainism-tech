@@ -3,8 +3,11 @@
     
     <link href="css/shastra3.css" rel="stylesheet">
 
-    <div class="topHead">{{metaData.name}} ({{metaData.author}})</div>
+    <div class="proofError" hidden>This page has not been proofread. Read at your own risk.</div>
+
+    <div class="topHead">{{metaData.name}} - {{pageData.title}}</div>
     <div class="shastraCover">
+        <div class="para center">रचियता - {{metaData.author}}</div>
         <div class="notePara">Jainism(dot)tech is an attempt to revolutionize the way we do digital swadhyay. We are determined to build a comprehensive database of Jain scriptures in web format (not PDF) and deliver the content responsively on your browser. For any questions, suggestions or want to contribute, join our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.</div>
         <div class="pageTitle">{{pageData.title}}</div>
         {% for x in shastraJSON %}
@@ -41,6 +44,6 @@
     <span class="pageID" hidden>{{pageID}}</span>
     <span class="proofread" hidden>{{pageData.proofread}}</span>
 
-    <script src="js/shastra2.js"></script>
+    <script src="js/shastra3.js"></script>
 
 {% endblock %}

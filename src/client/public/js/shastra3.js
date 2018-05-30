@@ -15,10 +15,8 @@ var activateAtY = 20;
 $(window).scroll(function() {
     if ($(window).scrollTop() > activateAtY) {
         $('.topHead').css('background-color','rgba(36, 48, 78, 0.9)');
-        $('.topHead').css('padding','10px 0px');
     } else {
         $('.topHead').css('background-color','rgba(36, 48, 78, 1)');
-        $('.topHead').css('padding','20px 0px');
     }
 });
 
@@ -139,3 +137,9 @@ function define(thisElem) {
     $('.modalTop').text(text);
     $('.modalCover').show();
 }
+
+// show proofread error if now proofread
+var proofbool = $('.proofread').text();
+if (proofbool == "false") {
+    $('.proofError').show();
+} 
