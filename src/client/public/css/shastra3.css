@@ -105,7 +105,6 @@
 }
 
 .iconSect {
-    padding: 10px 0px;
     max-width: 900px;
     box-sizing: border-box;
     position: fixed;
@@ -123,7 +122,7 @@
     width: max-content;
     margin: auto;
     margin-right: 20px;
-    margin-bottom: 10px;    
+    margin-bottom: 20px;    
     display: flex;
     justify-content: space-around;
     background: #2E2E2D;
@@ -159,21 +158,62 @@
     color: white;
 }
 
+.copyBoxTop {
+    font-size: 24px;
+    background-color: #33555E;
+    color: white;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 20px;
+    text-align:center;
+}
+
+.copyBoxText {
+    font-size: 16px;
+    letter-spacing: -1px;
+    color: black;
+    text-align:center;
+    margin: 30px auto;
+}
+
+.copyBoxBtn {
+    margin: auto;
+    margin-top: 12px;
+    max-width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #33555E;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 12px 40px;
+    cursor: pointer;
+    color: white;
+}
+
+.copyBoxBtn:hover {
+    background-color: #002B36;
+}
+
 @media screen and (max-width: 400px) {
 
-    .modalTop {
+    .copyBoxTop {
         font-size: 20px;
-    }
-    
-    .modalBox {
-        margin: 10px auto;
-        width: 95%;
     }
 
     .notePara {
         width: 90%;
         margin: auto;
         margin-bottom: 40px;
+    }
+
+    .iconDiv {
+        margin-right: 10px;
+        margin-bottom: 10px;    
+    }
+
+    .topHead {
+        font-size: 18px;
     }
 
 }

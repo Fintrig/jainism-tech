@@ -19,7 +19,7 @@
         <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank" class="normalBtn noline">Telegram</a>
     </div>
 
-    <div class="iconSect" hidden>
+    <div class="iconSect">
         <div class="iconDiv">
             <i class="material-icons md-28 onSelIcon" onclick="shareLink()">share</i>
             <div class="partDesign"></div>
@@ -30,10 +30,11 @@
     <!-- modal box popup -->
     <div class="copyModel">
         <div class="modalBox">
-            <div class="modalTop">Unique Link Created</div>
+            <div class="copyBoxTop">Unique Link Created</div>
             <div class="modalPadding">
-                <div class="modalText linkText"></div>
-                <div class="modalBtn" onclick="copyToClip()">COPY LINK</div>
+                <div class="copyBoxText linkText"></div>
+                <div class="copyBoxBtn" onclick="copyLinkToClip()">COPY LINK</div>
+                <div class="copyBoxBtn shareModalBtn" onclick="navShare()" hidden>SHARE</div>
             </div>
         </div>
     </div>
@@ -44,5 +45,6 @@
     <span class="proofread" hidden>{{pageData.proofread}}</span>
 
     <script src="js/shastra3.js"></script>
+    <script src="js/navShare.js"></script>
 
 {% endblock %}

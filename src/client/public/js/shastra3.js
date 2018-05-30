@@ -5,7 +5,7 @@ window.onscroll = function() {
     if (prevScrollpos > currentScrollPos) {
         $('.topHead').css('top', '0');
     } else {
-        $('.topHead').css('top', '-50px');
+        $('.topHead').css('top', '-100px');
     }
     prevScrollpos = currentScrollPos;
 }
@@ -101,6 +101,9 @@ function shareLink() {
                         var fullURL = `${document.location.origin}/s/${shastraID}/${pageID}?id=${res.data.uniID}`;
                         console.log(fullURL);
                         $('.linkText').html(`<p><a href="${fullURL}">${fullURL}</a></p>`);
+                        if (navigator.share != undefined) {
+                            $('.shareModalBtn').show();
+                        }
                         $('.copyModel').show();
                     } else {
                         popAlert('ERROR', res.message);
@@ -113,7 +116,7 @@ function shareLink() {
         } else {
             popAlert('ERROR', "Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.");
         }
-    }    
+    }
 }
 
 // copy selected text
@@ -133,11 +136,13 @@ function copyText() {
             popAlert('Unsupported Browser', 'Due to browser compatibility issue, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
         }
         inputElem.remove();
+    } else {
+        popAlert('Function Error', "You can't run share or copy functions without selecting or highlighting text on this page.");        
     }
 }
 
 // copy link from modal
-function copyToClip() {
+function copyLinkToClip() {
     var fullURL = $('.linkText').text();
     var inputElem = $('<input>').val(fullURL);
     $('body').append(inputElem);

@@ -72,3 +72,16 @@
 .modalBtn:hover {
     background-color: #002B36;
 }
+
+@media screen and (max-width: 400px) {
+
+    .modalTop {
+        font-size: 20px;
+    }
+    
+    .modalBox {
+        margin: 10px auto;
+        width: 95%;
+    }
+
+}
