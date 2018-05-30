@@ -158,7 +158,7 @@ function copyLinkToClip() {
     try {
         var ok = document.execCommand('copy');
         if (ok) {
-            popAlert(`URL Copied!`, `The selected text specific unique link has been copied to your clipboard.`);
+            // popAlert(`URL Copied!`, `The selected text specific unique link has been copied to your clipboard.`);
         } else {
             popAlert(`Unable to copy the URL`, `Due to some error, we are not able to copy the text on your clipboard. Please copy the following link or click to redirect:<p><a href="${fullURL}">${fullURL}</a></p>`);
         }
