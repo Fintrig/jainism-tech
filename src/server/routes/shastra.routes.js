@@ -58,34 +58,56 @@ router.get('/:shastraID/:pageID', (req, res) => {
 // store the highlighted text
 router.post('/text', (req, res) => {
     var uniID = makeid();
-    var YellowedText = req.body.line;
-    if (YellowedText.length > 20 && YellowedText.length < 1200) {
-        var shastraID = req.body.shastraID;
-        var pageID = req.body.pageID;
-        db.ref(`TextShare/${uniID}`).set({
-            text: YellowedText,
-            shastraID: shastraID,
-            pageID: pageID,
-            getTime: (new Date()).getTime(),
-            createdBy: 'anon'
-        });
-        res.send({
-            status: true,
-            message: 'ID created',
-            data: {
-                uniID: uniID
-            }
-        });
+    var YellowedText = isNotMultiPara(req.body.line);
+    if (YellowedText) {
+        if (YellowedText.length > 20 && YellowedText.length < 1200) {
+            var shastraID = req.body.shastraID;
+            var pageID = req.body.pageID;
+            db.ref(`TextShare/${uniID}`).set({
+                text: YellowedText,
+                shastraID: shastraID,
+                pageID: pageID,
+                getTime: (new Date()).getTime(),
+                createdBy: 'anon'
+            });
+            res.send({
+                status: true,
+                message: 'ID created',
+                data: {
+                    uniID: uniID
+                }
+            });
+        } else {
+            res.send({
+                status: false,
+                message: "Your selected text must be between 20 to 1200 characters.",
+                data: {
+                    uniID: uniID
+                }
+            });
+        }
     } else {
         res.send({
             status: false,
-            message: "Your selected text must be between 20 to 1200 characters. Multi paragraph selection also doesn't work.",
+            message: "Multi paragraph selections are not allowed. Please select single paragraph between 20 to 1200 characters.",
             data: {
                 uniID: uniID
             }
         });
     }
 });
+
+function isNotMultiPara(text) {
+    if (text.includes('\n')) {
+        if (text.endsWith('\n')) {
+            return text.replace(/\n/g, '');
+        } else {
+            return false;
+        }
+    } else {
+        return text;
+    }
+}
 
 function makeid() {
     var text = "";
