@@ -188,15 +188,16 @@ function SwitchToNightMode(thisElem) {
     var getText = $(thisElem).text();
     if (getText == "brightness_low") {
         $(thisElem).text('brightness_high');
-        $('.para').css({
-            'background-color': '#333333',
-            'color': '#EDEDED'
-        });
+        $('body').css('background-color', 'black');
+        $('.para').css('color', 'white');
+        $('.paraHead').css('color', 'black');
+        $('.authorClass').css('color', 'white');
+        $('.topHead').css('background-color', 'black');
     } else {
         $(thisElem).text('brightness_low');
-        $('.para').css({
-            'background-color': '#EDEDED',            
-            'color': '#333333'
-        });
+        $('body').css('background-color', '#EDEDED');
+        $('.para').css('color', 'black');
+        $('.authorClass').css('color', 'black');
+        $('.topHead').css('background-color', '#33555E');
     }
 }
