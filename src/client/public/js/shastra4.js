@@ -183,3 +183,20 @@ var proofbool = $('.proofread').text();
 if (proofbool == "false") {
     popAlert(`WARNING`, `This page has not been proofread. Read at your own risk.`);
 }
+
+function SwitchToNightMode(thisElem) {
+    var getText = $(thisElem).text();
+    if (getText == "brightness_low") {
+        $(thisElem).text('brightness_high');
+        $('.para').css({
+            'background-color': '#333333',
+            'color': '#EDEDED'
+        });
+    } else {
+        $(thisElem).text('brightness_low');
+        $('.para').css({
+            'background-color': '#EDEDED',            
+            'color': '#333333'
+        });
+    }
+}
