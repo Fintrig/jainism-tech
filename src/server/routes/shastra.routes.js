@@ -10,14 +10,17 @@ router.use((req, res, next) => {
     next();
 });
 
-/* 
-    read the shastra from server "data" folder
-    render the JSON file
-*/
+function mmpRedirect(req, res, next) {
+    if (req.params.shastraID == 'mmp') {
+        res.redirect(`/s/mokshmarg-prakashak/${req.params.pageID}`);
+    } else {
+        next();
+    }
+}
 
 var LinkBrokeError = `Looks Like URL is Broken. No Shastra with such Details. Please us at our <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank">telegram group</a>.`;
 
-router.get('/:shastraID/:pageID', (req, res) => {
+router.get('/:shastraID/:pageID', mmpRedirect, (req, res) => {
     var shastraID = req.params.shastraID;
     var pageID = req.params.pageID;
     var shareID = req.query.id;
