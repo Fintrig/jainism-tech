@@ -17,7 +17,7 @@ router.post('/convert', (req, res) => {
     var data = req.body.text;
 
     var splitData = data.split('\n');
-	var divData = '';	
+	var divData = '';
 	for (var i = 0; i < splitData.length; i++) {
 		if (splitData[i]) {
 			divData += `<div>${splitData[i]}</div>\n`;
@@ -35,8 +35,9 @@ router.post('/convert', (req, res) => {
 			var el = dom.window.document.querySelector("div");
 			var obj = {};
 			var clsList = el.classList.value;
+			console.log(clsList);
 			obj.class = 'para';
-			obj.text = el.textContent;
+			obj.text = el.innerHTML;
 			ExtractJSON.push(obj);
 		}
 	}
