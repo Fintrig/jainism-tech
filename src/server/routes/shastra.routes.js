@@ -12,7 +12,11 @@ router.use((req, res, next) => {
 
 function mmpRedirect(req, res, next) {
     if (req.params.shastraID == 'mmp') {
-        res.redirect(`/s/mokshmarg-prakashak/${req.params.pageID}`);
+        var url = `/s/mokshmarg-prakashak/${req.params.pageID}`;
+        if (req.query.id) {
+            url += `?id=${req.query.id}`;
+        }
+        res.redirect(url);
     } else {
         next();
     }
