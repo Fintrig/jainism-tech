@@ -32,7 +32,7 @@ module.exports = {
 			context: JSON.stringify(obj.template_var)
 		};
 
-		request.post('https://email.clonefolio.com/send-email', {
+		request.post('https://email.sowmayjain.com/send-email', {
 			form: payload,
 			headers: {
 				contentType: 'application/x-www-form-urlencoded'
@@ -61,7 +61,7 @@ module.exports = {
 			service_name: 'BSE_NOTIFIER'
 		};
 
-		request.post('https://email.clonefolio.com/send-text', {
+		request.post('https://email.sowmayjain.com/send-text', {
 			form: payload,
 			headers: {
 				contentType: 'application/x-www-form-urlencoded'
@@ -96,7 +96,7 @@ module.exports = {
 		};
 
 
-		request.post('https://email.clonefolio.com/push-notify', {
+		request.post('https://email.sowmayjain.com/push-notify', {
 			form: payload,
 			headers: {
 				contentType: 'application/x-www-form-urlencoded'
