@@ -5,6 +5,7 @@ const express = require('express'),
 	bodyParser = require('body-parser'),
 	cookieParser = require('cookie-parser'),
 	compression = require('compression'),
+	session = require('client-sessions'),
 	admin = require('firebase-admin'),
     path = require('path');
 
@@ -14,6 +15,7 @@ const network = require('./src/server/modules/network'),
 
 const routes = require('./src/server/routes/routes'),
 	shastraRoutes = require('./src/server/routes/shastra.routes'),
+	authRoutes = require('./src/server/routes/auth.routes'),
 	formatRoutes = require('./src/server/routes/format.routes');
 
 if (!process.env.FIREBASE_KEYS) {
@@ -35,11 +37,10 @@ if (!process.env.PORT) {
 const serviceAccount = require(path.resolve(process.env.FIREBASE_KEYS));
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://jainismtech.firebaseio.com"
-});
-
-const db = admin.database();
+	credential: admin.credential.cert(serviceAccount)
+  });
+  
+  var db = admin.firestore();
 
 // initializing different instances on the server
 const app = express();
@@ -75,8 +76,16 @@ for (var i = 0; i < 7; i++) {
 	}));
 }
 
+app.use(session({
+	cookieName: 'session',
+	secret: 'iugwhjsn765ui6o7s8k8d9mc4o3wi3j34h4b5e6d77nk8os8i9j9hdbcnj',
+	duration: 30 * 24 * 60 * 60 * 1000, // 30 days
+	activeDuration: 5 * 60 * 1000 // 5 minutes
+}));
+
 app.use('/s', shastraRoutes);
 app.use('/format', formatRoutes);
+app.use('/auth', authRoutes);
 app.use('/', routes);
 
 nunjucks.configure('./src/client/views', {

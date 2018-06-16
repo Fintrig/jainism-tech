@@ -3,10 +3,23 @@
     
     <link href="css/format.css" rel="stylesheet">
 
-    <div>
-        <textarea type="text" placeholder="Your shastra text goes here..." onkeyup="textAreaAdjust()"></textarea>
+    <div class="pageCover">
+        <div class="topOption">
+            <div class="option"><input class="chhandText" type="button" value="Chhand"></div>
+            <div class="option"><input class="boldText" type="button" value="Bold"></div>
+            <div class="option"><input class="titleText" type="button" value="Title"></div>
+            <div class="option"><input class="centerText" type="button" value="Center"></div>
+            <div class="optRight">
+                <div class="option"><input class="saveText" type="button" value="Save"></div>
+            </div>
+        </div>
+
+        <div>
+            <textarea type="text" placeholder="Your shastra text goes here...">{{content}}</textarea>
+        </div>
     </div>
-    <div class="floatBtn" onclick="PostData()">Convert to JSON</div>
+
+    <center><div>sometext</div></center>
 
     <script src="js/format.js"></script>    
 
