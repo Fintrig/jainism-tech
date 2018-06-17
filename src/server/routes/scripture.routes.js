@@ -45,6 +45,7 @@ router.get('/:scriptureSlug/:pageID', mmpRedirect, (req, res) => {
                             name: metadata.name,
                             chapterTitle: pageDoc.data().title,
                             proofread: metadata.proofread,
+                            scriptureCode: scriptureCode
                         };
                         if (shareID) {
                             db.collection('textShare').doc(shareID).get().then(tsDoc => {
@@ -82,43 +83,44 @@ router.get('/:scriptureSlug/:pageID', mmpRedirect, (req, res) => {
 });
 
 // store the highlighted text
-router.post('/text', (req, res) => {
-    var uniID = makeid();
+router.post('/textShare', (req, res) => {
+    // var uniID = makeid();
     var YellowedText = isNotMultiPara(req.body.line);
     if (YellowedText) {
         if (YellowedText.length > 20 && YellowedText.length < 1200) {
-            var shastraID = req.body.shastraID;
+            var scriptureCode = req.body.scriptureCode;
             var pageID = req.body.pageID;
-            db.ref(`TextShare/${uniID}`).set({
-                text: YellowedText,
-                shastraID: shastraID,
+
+            db.collection('textShare').add({
+				text: YellowedText,
+                scriptureCode: scriptureCode,
                 pageID: pageID,
                 getTime: (new Date()).getTime(),
                 createdBy: 'anon'
-            });
-            res.send({
-                status: true,
-                message: 'ID created',
-                data: {
-                    uniID: uniID
-                }
+			}).then(ref => {
+                res.send({
+                    status: true,
+                    message: 'ID created',
+                    data: {
+                        uniID: ref.id
+                    }
+                });
+            }).catch(err => {
+                res.send({
+                    status: false,
+                    message: "Internal Server Error."
+                });
             });
         } else {
             res.send({
                 status: false,
-                message: "Your selected text must be between 20 to 1200 characters.",
-                data: {
-                    uniID: uniID
-                }
+                message: "Your selected text must be between 20 to 1200 characters."
             });
         }
     } else {
         res.send({
             status: false,
-            message: "Multi paragraph selections are not allowed. Please select single paragraph between 20 to 1200 characters.",
-            data: {
-                uniID: uniID
-            }
+            message: "Multi paragraph selections are not allowed. Please select single paragraph between 20 to 1200 characters."
         });
     }
 });
@@ -133,15 +135,6 @@ function isNotMultiPara(text) {
     } else {
         return text;
     }
-}
-
-function makeid() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < 8; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
 }
 
 module.exports = router;

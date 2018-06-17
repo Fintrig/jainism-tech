@@ -18,10 +18,9 @@
     padding: 10px 0px;
     text-align: center;
     font-size: 20px;
-    /* font-weight: bold; */
     width: 100%;
     box-sizing: border-box;
-    letter-spacing: -1px;
+    letter-spacing: 0;
     transition: all 0.5s linear;
     position: fixed;
     z-index: 1;
@@ -39,7 +38,6 @@
     text-align: center;
     background-color: #EDEDED;
     padding: 10px;
-    /* font-weight: bold; */
 }
 
 .pageTitle {
@@ -97,21 +95,13 @@
     font-weight: bold;
 }
 
-.iconSect {
-    max-width: 900px;
+.iconDiv {
     box-sizing: border-box;
     position: fixed;
     z-index: 1;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
-    -webkit-transition: all 1s linear;
-    -ms-transition: all 1s linear;
-    transition: all 1s linear;
-}
-
-.iconDiv {
     width: max-content;
     margin: auto;
     margin-right: 20px;
@@ -120,6 +110,11 @@
     justify-content: space-around;
     background: #2E2E2D;
     border-radius: 4px;
+}
+
+.floatIconImage {
+    cursor: pointer;
+    padding: 10px;
 }
 
 .onSelIcon {
@@ -185,7 +180,7 @@
 }
 
 .copyBoxBtn:hover {
-    background-color: #002B36;
+    background-color: #323232;
 }
 
 @media screen and (max-width: 400px) {
@@ -207,6 +202,17 @@
 
     .topHead {
         font-size: 18px;
+    }
+
+    .floatIconImage {
+        padding: 5px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .para {
+        line-height: 1.6;
+        font-size: 15px;
     }
 
 }

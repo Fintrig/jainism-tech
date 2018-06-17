@@ -51,10 +51,6 @@ function yellowScroll(sid) {
 }
 
 // do something with selected text
-var TextHighlighted;
-// it's to check if there's no text return (TextHighlighted is returned)
-// so to not run copy and share function even if the text is not highlighted for more than 3 seconds
-var textHighBool = true;
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -62,41 +58,26 @@ function getSelectionText() {
     } else if (document.selection && document.selection.type != "Control") {
         var text = document.selection.createRange().text;
     }
-    if (text) {
-        textHighBool = true;
-        return text;
-    } else {
-        if (textHighBool) {
-            setTimeout(function(){TextHighlighted="";}, 3000);
-        }
-        textHighBool = false;
-        return TextHighlighted;
-    }
+    return text;
 }
-
-// show bottom icon if selected text
-document.onmouseup = document.onkeyup = document.onselectionchange = function() {
-    TextHighlighted = getSelectionText();
-    if (TextHighlighted) {
-        $('.iconSect').show();
-    }
-};
 
 // show link on clicking the share button
 function shareLink() {
+    var TextHighlighted = getSelectionText();
     if (TextHighlighted) {
-        var scriptureSlug = $('.scriptureSlug').text();
+        var scriptureCode = $('.scriptureCode').text();
         var pageID = $('.pageID').text();
         var obj = {
             line: TextHighlighted,
-            scriptureSlug: scriptureSlug,
+            scriptureCode: scriptureCode,
             pageID: pageID
         }
         if (TextHighlighted.length > 20 && TextHighlighted.length < 1200) {
             loader(true);
-            $.post("/s/text", obj, function(res, status) {
+            $.post("/s/textShare", obj, function(res, status) {
                 if (status) {
                     if (res.status) {
+                        var scriptureSlug = $('.scriptureSlug').text();
                         var fullURL = `${document.location.origin}/s/${scriptureSlug}/${pageID}?id=${res.data.uniID}`;
                         console.log(fullURL);
                         $('.linkText').html(`<p><a href="${fullURL}">${fullURL}</a></p>`);
@@ -129,28 +110,6 @@ function navShare() {
     }
 }
 
-// copy selected text
-// function copyText() {
-//     if (TextHighlighted) {
-//         var inputElem = $('<input>').val(TextHighlighted);
-//         $('body').append(inputElem);
-//         inputElem.select();
-//         try {
-//             var ok = document.execCommand('copy');
-//             if (ok) {
-//                 popAlert('Text Copied!', 'The selected text on the page has been copied to your clipboard.');
-//             } else {
-//                 popAlert('Unable to copy the text', 'Due to some error, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
-//             }
-//         } catch (err) {
-//             popAlert('Unsupported Browser', 'Due to browser compatibility issue, we are not able to copy the text on your clipboard. Please copy the text directly from webpage.');
-//         }
-//         inputElem.remove();
-//     } else {
-//         popAlert('Function Error', "You can't run share or copy functions without selecting or highlighting text on this page.");        
-//     }
-// }
-
 // copy link from modal
 function copyLinkToClip() {
     var fullURL = $('.linkText').text();
@@ -170,13 +129,6 @@ function copyLinkToClip() {
     inputElem.remove();
     $('.copyModel').hide();
 }
-
-/*
-    blue highlight definition word on the whole page
-*/
-// $("body").children().each(function () {
-//     $(this).html( $(this).html().replace(/स्वरूप/g,"<span class='paraBlue' onclick='define(this)'>स्वरूप</span>") );
-// });
 
 // show proofread error if now proofread
 var proofbool = $('.proofread').text();
