@@ -25,7 +25,7 @@
 
 .modalTop {
     font-size: 24px;
-    background-color: #33555E;
+    background-color: #323232;
     color: white;
     font-weight: bold;
     line-height: 36px;
@@ -60,7 +60,7 @@
     max-width: 300px;
     box-sizing: border-box;
     text-align: center;
-    background-color: #33555E;
+    background-color: #323232;
     font-size: 14px;
     font-weight: bold;
     border-radius: 4px;
@@ -70,7 +70,7 @@
 }
 
 .modalBtn:hover {
-    background-color: #002B36;
+    background-color: black;
 }
 
 @media screen and (max-width: 400px) {

@@ -15,9 +15,9 @@ window.onscroll = function() {
     search for text and highlight it yellow
     scroll to that space element on the page
 */
-var TextToBeYellowed = $('.SharedText').text();
+var TextToBeYellowed = $('.sharedText').text();
 if (TextToBeYellowed) {
-    var sid = $('.SharedText').attr('id');
+    var sid = getQueryParams('id');
     textSearch();
 }
 
@@ -85,11 +85,11 @@ document.onmouseup = document.onkeyup = document.onselectionchange = function() 
 // show link on clicking the share button
 function shareLink() {
     if (TextHighlighted) {
-        var shastraID = $('.shastraID').text();
+        var scriptureSlug = $('.scriptureSlug').text();
         var pageID = $('.pageID').text();
         var obj = {
             line: TextHighlighted,
-            shastraID: shastraID,
+            scriptureSlug: scriptureSlug,
             pageID: pageID
         }
         if (TextHighlighted.length > 20 && TextHighlighted.length < 1200) {
@@ -97,7 +97,7 @@ function shareLink() {
             $.post("/s/text", obj, function(res, status) {
                 if (status) {
                     if (res.status) {
-                        var fullURL = `${document.location.origin}/s/${shastraID}/${pageID}?id=${res.data.uniID}`;
+                        var fullURL = `${document.location.origin}/s/${scriptureSlug}/${pageID}?id=${res.data.uniID}`;
                         console.log(fullURL);
                         $('.linkText').html(`<p><a href="${fullURL}">${fullURL}</a></p>`);
                         if (navigator.share != undefined) {
@@ -182,22 +182,4 @@ function copyLinkToClip() {
 var proofbool = $('.proofread').text();
 if (proofbool == "false") {
     popAlert(`WARNING`, `This page has not been proofread. Read at your own risk.`);
-}
-
-function SwitchToNightMode(thisElem) {
-    var getText = $(thisElem).text();
-    if (getText == "brightness_low") {
-        $(thisElem).text('brightness_high');
-        $('body').css('background-color', 'black');
-        $('.para').css('color', 'white');
-        $('.paraHead').css('color', 'black');
-        $('.authorClass').css('color', 'white');
-        $('.topHead').css('background-color', 'black');
-    } else {
-        $(thisElem).text('brightness_low');
-        $('body').css('background-color', '#EDEDED');
-        $('.para').css('color', 'black');
-        $('.authorClass').css('color', 'black');
-        $('.topHead').css('background-color', '#33555E');
-    }
 }

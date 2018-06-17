@@ -1,0 +1,46 @@
+{% extends "templates/index.njk" %}
+{% block content %}
+    
+    <link href="css/scripture.css" rel="stylesheet">
+
+    <div class="topHead">{{name}}</div>
+    <div class="shastraCover">
+        <div class="authorClass center">रचियता - {{author}}</div>
+        <div class="pageTitle">{{chapterTitle}}</div>
+        {% for content in contentArr %}
+            <div class="para">{{content}}</div>
+        {% endfor %}
+        <div class="linkedBtn">
+            <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank" class="normalBtn noline">Telegram</a>
+        </div>
+    </div>
+
+
+    <div class="iconSect">
+        <div class="iconDiv">
+            <!-- change it to image instead -->
+            <i class="material-icons md-28 onSelIcon" onclick="shareLink()">share</i>
+            <!-- <div class="partDesign"></div> -->
+        </div>
+    </div>
+
+    <!-- modal box popup -->
+    <div class="copyModel">
+        <div class="modalBox">
+            <div class="copyBoxTop">Unique Link Created</div>
+            <div class="modalPadding">
+                <div class="copyBoxText linkText"></div>
+                <div class="copyBoxBtn" onclick="copyLinkToClip()">COPY LINK</div>
+                <div class="copyBoxBtn shareModalBtn" onclick="navShare()" hidden>SHARE</div>
+            </div>
+        </div>
+    </div>
+
+    <span class="sharedText" hidden>{{yellowedText}}</span>
+    <span class="scriptureSlug" hidden>{{scriptureSlug}}</span>
+    <span class="pageID" hidden>{{pageID}}</span>
+    <span class="proofread" hidden>{{proofread}}</span>
+
+    <script src="js/scripture.js"></script>
+
+{% endblock %}

@@ -14,33 +14,19 @@ const network = require('./src/server/modules/network'),
 	scheduler = require('./src/server/modules/scheduler');
 
 const routes = require('./src/server/routes/routes'),
-	shastraRoutes = require('./src/server/routes/shastra.routes'),
+	scriptureRoutes = require('./src/server/routes/scripture.routes'),
 	authRoutes = require('./src/server/routes/auth.routes'),
 	formatRoutes = require('./src/server/routes/format.routes');
 
 if (!process.env.FIREBASE_KEYS) {
-	// console.error("$FIREBASE_KEYS environment variable not set");
 	process.env.FIREBASE_KEYS = './firebase.json';
-	process.env.dev = true;
 }
 
-if (!process.env.PORT) {
-    console.error("$PORT is not specified! Starting a server at 5000");
-    process.env.PORT = 5000;
-}
-
-// The application requires FIREBASE_KEYS to initialise database. 
-// This can not be started by someone who doesn't has those keys because everything in request handler expects to have a database connection.
-// So, I suggest two options, 
-// Either hand out FIREBASE_KEYS to everyone who wants to contribute 
-// Rewrite everything in a way to mock/disable Firebase database when testing it locally. 
 const serviceAccount = require(path.resolve(process.env.FIREBASE_KEYS));
-
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount)
-  });
-  
-  var db = admin.firestore();
+});
+const db = admin.firestore();
 
 // initializing different instances on the server
 const app = express();
@@ -53,14 +39,12 @@ app.set('trust proxy', true);
 
 app.use(cookieParser());
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
+// https://stackoverflow.com/questions/19917401/error-request-entity-too-large
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 
 app.use(compression());
 
-// Remove x-powered-by header from responses
 app.disable('x-powered-by');
 
 app.use(express.static(path.join(__dirname, 'src/client/public'), {
@@ -83,7 +67,7 @@ app.use(session({
 	activeDuration: 5 * 60 * 1000 // 5 minutes
 }));
 
-app.use('/s', shastraRoutes);
+app.use('/s', scriptureRoutes);
 app.use('/format', formatRoutes);
 app.use('/auth', authRoutes);
 app.use('/', routes);

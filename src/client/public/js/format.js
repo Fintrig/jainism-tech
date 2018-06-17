@@ -10,13 +10,19 @@ function getText() {
 
 function textEdit(elem) {
     var selectedText = getText();
-    if (selectedText) {
-        var modifiedText = elem.replace('%selectedText%', selectedText);
-        var replacedText = $('textarea').val().replace(selectedText, modifiedText);
-        $('textarea').val(replacedText);
-        saveLocal(replacedText);
+    var scripture = getQueryParams('scripture');
+    var page = getQueryParams('page');
+    if (scripture && page) {
+        if (selectedText) {
+            var modifiedText = elem.replace('%selectedText%', selectedText);
+            var replacedText = $('textarea').val().replace(selectedText, modifiedText);
+            $('textarea').val(replacedText);
+            saveLocal(replacedText);
+        } else {
+            popAlert('ERROR', 'Please select some text to run this function.');
+        }
     } else {
-        alert('Please select some text to run this function.');
+        popAlert('ERROR', 'Please define the scripture code and page in query params.');
     }
 }
 
@@ -24,8 +30,8 @@ function saveLocal(sContent) {
     localStorage.setItem("sContent", sContent);
 }
 
-$('.chhandText').on('click', function() {
-    textEdit(`<span class="chhand">%selectedText%</span>`);
+$('.verseText').on('click', function() {
+    textEdit(`<div class="verse">%selectedText%</div>`);
 });
 
 $('.boldText').on('click', function() {
@@ -33,7 +39,7 @@ $('.boldText').on('click', function() {
 });
 
 $('.titleText').on('click', function() {
-    textEdit(`<span class="titleClass">%selectedText%</span>`);
+    textEdit(`<div class="paraHead">%selectedText%</div>`);
 });
 
 $('.centerText').on('click', function() {
@@ -41,21 +47,21 @@ $('.centerText').on('click', function() {
 });
 
 $('.saveText').on('click', function() {
-    var shastra = getQueryParams('shastra');
+    var scripture = getQueryParams('scripture');
     var page = getQueryParams('page');
     var content = $('textarea').val();
     loader(true);
     $.post("/format/save", {
-        shastra: shastra,
+        scripture: scripture,
         page: page,
         content: content
     }, function(res) {
         saveLocal(content);
         loader(false);
         if (res.status) {
-            alert('Shastra saved and updated.');
+            popAlert('SUCCESS', 'Scripture Updated');
         } else {
-            alert(res.message);
+            popAlert('ERROR', res.message);
         }
     });
 });

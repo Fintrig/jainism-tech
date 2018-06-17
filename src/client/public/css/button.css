@@ -9,18 +9,18 @@
     margin: 30px auto;
     width: max-content;
     font-weight: bold;
-    background-color: #33555E;
+    background-color: #323232;
     color: white;
     padding: 10px 40px;
     border-radius: 20px;
     font-size: 20px;
-    -webkit-box-shadow: 0 10px 8px -8px #33555E;
-    -moz-box-shadow: 0 10px 8px -8px #33555E;
-    box-shadow: 0 10px 8px -8px #33555E;
+    -webkit-box-shadow: 0 10px 8px -8px #323232;
+    -moz-box-shadow: 0 10px 8px -8px #323232;
+    box-shadow: 0 10px 8px -8px #323232;
 }
 
 .normalBtn:hover {
-    -webkit-box-shadow: 0 14px 10px -10px #33555E;
-    -moz-box-shadow: 0 14px 10px -10px #33555E;
-    box-shadow: 0 14px 10px -10px #33555E;
+    -webkit-box-shadow: 0 14px 10px -10px #323232;
+    -moz-box-shadow: 0 14px 10px -10px #323232;
+    box-shadow: 0 14px 10px -10px #323232;
 }

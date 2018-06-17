@@ -10,7 +10,6 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-    console.log(req.session.bool, typeof req.session.bool);
     if (req.session.bool === true) {
         res.redirect('/format');
     } else {
@@ -20,7 +19,7 @@ router.get('/', (req, res) => {
             console.log(passcode, user);
             req.session.bool = true;
             req.session.user = user;
-            res.redirect('/format');
+            res.redirect('/format?scripture=&page=');
         } else {
             res.send('Create session to access previous page.');
         }
