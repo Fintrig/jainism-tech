@@ -1,5 +1,18 @@
-.blackHref {
-    color: black;
+:root {
+    --max-width: 900px; 
+}
+
+.footList {
+    width: max-content;
+    margin: auto;
+    display: flex;
+    padding: 5px 0;
+}
+
+.footNav {
+    padding: 20px;
+    font-size: 14px;
+    width: max-content;
 }
 
 .notePara {
@@ -12,26 +25,53 @@
     margin-bottom: 40px;
 }
 
-.topHead {
+.thCover {
     background-color:#323232;
     color: white;
-    padding: 10px 0px;
-    text-align: center;
-    font-size: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    letter-spacing: 0;
     transition: all 0.5s linear;
+    width: 100%;
     position: fixed;
     z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 5;
 }
 
-.shastraCover {
-    max-width: 900px;
-    margin: 100px auto;
+.subMenu {
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: bold;
+    max-width: var(--max-width);
+    margin: auto;
+    letter-spacing: 0;
+    border-bottom: 2px solid #EDEDED;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    top: 5px;
+    width: 100%;
+    right: 0;
+    left: 0;
+}
+
+.topHead {
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: bold;
+    max-width: var(--max-width);
+    margin: auto;
+    letter-spacing: 0;
+    display: flex;
+}
+
+.topRight {
+    width: max-content;
+    margin: auto;
+    margin-right: 0;    
+}
+
+.scriptureCover {
+    max-width: var(--max-width);
+    margin: 60px auto;
 }
 
 .verse {
@@ -66,7 +106,6 @@
 }
 
 .authorClass {
-    margin-top: 30px;
     font-size: 20px;
     letter-spacing: -1px;
     font-weight: bold;
@@ -198,10 +237,6 @@
     .iconDiv {
         margin-right: 10px;
         margin-bottom: 10px;    
-    }
-
-    .topHead {
-        font-size: 18px;
     }
 
     .floatIconImage {

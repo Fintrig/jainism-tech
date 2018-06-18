@@ -8,3 +8,11 @@ html, body {
 .noline {
     text-decoration: none;
 }
+
+.blackHref {
+    color: #323232;
+}
+
+.whiteHref {
+    color: white;
+}

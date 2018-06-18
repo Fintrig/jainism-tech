@@ -3,16 +3,26 @@
     
     <link href="css/scripture.css" rel="stylesheet">
 
-    <div class="topHead">{{name}}</div>
-    <div class="shastraCover">
+    <div class="thCover">
+        <div class="topHead">
+            <a href="/" class="noline whiteHref">jainism(dot)tech</a>
+            <div class="topRight">{{name}}</div>
+        </div>
+    </div>
+    <div class="subMenu">{{chapterTitle}}</div>
+
+    <div class="scriptureCover">
         <div class="authorClass center">रचियता - {{author}}</div>
         <div class="pageTitle">{{chapterTitle}}</div>
         {% for content in contentArr %}
             <div class="para">{{content}}</div>
         {% endfor %}
-        <div class="linkedBtn">
-            <a href="https://t.me/joinchat/GhdN1g8S4KNTRHRvqyXkBA" target="_blank" class="normalBtn noline">Telegram</a>
-        </div>
+    </div>
+
+    <div class="footList">
+        <div class="footNav"><a href="/" class="blackHref noline">Home</a></div>
+        <div class="footNav"><a href="" class="blackHref noline">Contact</a></div>
+        <div class="footNav"><a href="" class="blackHref noline">Telegram</a></div>
     </div>
 
 
@@ -34,7 +44,7 @@
     </div>
 
     <span class="sharedText" hidden>{{yellowedText}}</span>
-    <span class="scriptureCode">{{scriptureCode}}</span>
+    <span class="scriptureCode" hidden>{{scriptureCode}}</span>
     <span class="scriptureSlug" hidden>{{scriptureSlug}}</span>
     <span class="pageID" hidden>{{pageID}}</span>
     <span class="proofread" hidden>{{proofread}}</span>
