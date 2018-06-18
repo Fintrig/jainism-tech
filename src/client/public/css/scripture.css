@@ -32,7 +32,18 @@
     width: 100%;
     position: fixed;
     z-index: 1;
-    top: 5;
+    top: 0;
+}
+
+.topHead {
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: bold;
+    max-width: var(--max-width);
+    margin: auto;
+    letter-spacing: 0;
+    display: flex;
 }
 
 .subMenu {
@@ -50,17 +61,6 @@
     width: 100%;
     right: 0;
     left: 0;
-}
-
-.topHead {
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 18px;
-    font-weight: bold;
-    max-width: var(--max-width);
-    margin: auto;
-    letter-spacing: 0;
-    display: flex;
 }
 
 .topRight {

@@ -15,16 +15,6 @@ function topBarScrol() {
     prevScrollpos = currentScrollPos;
 }
 
-// var header = document.getElementById("subMenuID");
-// var sticky = header.offsetTop;
-// function subBarScroll() {
-//     if (window.pageYOffset >= sticky) {
-//         header.classList.add("sticky");
-//     } else {
-//         header.classList.remove("sticky");
-//     }
-// }
-
 function removeBotIcon() {
     if ($('body').height() <= ($(window).height() + $(window).scrollTop())) {
         $('.iconDiv').hide();
